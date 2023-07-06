@@ -1,4 +1,46 @@
-This is forked from a great work of [Joshua Ulrich](https://github.com/joshuaulrich/IBrokers), just to fix one tiny issue related to placing order with `algoParams`. 
+### Highlights
+
+This is forked from the original repo of [Joshua Ulrich](https://github.com/joshuaulrich/IBrokers), just to fix one tiny issue related to placing order with `algoParams`. See examples below:
+
+- For order types other than traditional limit (`LMT`) or markert (`MKT`), user can specify the arguments `algoStrategy` and `algoParams` in the function `twsOrder()`. For instance, this is the adaptive order example by [fmair](https://github.com/fmair) in [Issue #40](https://github.com/joshuaulrich/IBrokers/pull/40)
+```
+library(IBrokers)
+
+tws <- twsConnect(port = 7496, verbose = TRUE)
+
+contract <- twsFuture(symbol = "ES",
+                       exch = "CME",
+                       expiry = "202312",
+                       currency = "USD")
+
+order <- IBrokers::twsOrder(action = "BUY",
+                            totalQuantity = 1,
+                            orderType = "MKT",
+                            tif = "DAY",
+                            transmit = FALSE,
+                            algoStrategy = "Adaptive",
+                            algoParams = c("1", "adaptivePriority", "Patient")
+)
+
+placeOrder(twsconn = tws,
+           Contract = contract,
+           Order = order)
+```
+
+- IB TWS also support to place TWAP or VWAP orders by tilting the two arguments:
+```
+algoStrategy = "Vwap",
+algoParams = c("5",
+               "maxPctVol", "0.2", 
+               "startTime", "09:30:00 US/Eastern",
+               "endTime", "12:30:00 US/Eastern",
+               "noTakeLiq", "1",
+               "allowPastEndTime", "0")
+```
+
+
+
+
 ---
 
 ### About
