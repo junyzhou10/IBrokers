@@ -1,3 +1,6 @@
+This is forked from a great work of [Joshua Ulrich](https://github.com/joshuaulrich/IBrokers), just to fix one tiny issue related to placing order with `algoParams`. 
+---
+
 ### About
 
 IBrokers is an [R](https://www.r-project.org) package that provides native R
@@ -26,10 +29,8 @@ To install the development version, you need to clone the repository and build
 from source, or run one of:
 
 ```r
-# lightweight
-remotes::install_github("joshuaulrich/IBrokers")
-# or
-devtools::install_github("joshuaulrich/IBrokers")
+# To install this version
+devtools::install_github("junyzhou10/IBrokers")
 ```
 
 ###### Have a question?
