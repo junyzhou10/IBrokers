@@ -95,6 +95,7 @@ export(twsConnect,
        reqOpenOrders,
       .reqAllOpenOrders,
       .reqAutoOpenOrders,
+       reqOpenOrders.FUT,
        exerciseOptions,
 
        reqNewsBulletins,
